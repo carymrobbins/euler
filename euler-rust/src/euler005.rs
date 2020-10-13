@@ -27,15 +27,16 @@ pub fn divisible_by_all(min: u64, max: u64) -> u64 {
     if min == 1 && max == 1 {
         return 1;
     }
+    // Ensure our range does not include 1 as it's an unnecessary check.
     let start = if min == 1 { 2 } else { min };
+    // Create a closure for building our range.
     let range = || start..=max;
-    let mut multipliers = vec![];
+    let mut result: u64 = 1;
     for d in range().rev() {
-        if multipliers.iter().all(|m| m % d != 0) {
-            multipliers.push(d);
+        if result % d != 0 {
+            result *= d;
         }
     }
-    let mut result = multipliers.iter().product();
     for d in range() {
         loop {
             let q = result / d;
