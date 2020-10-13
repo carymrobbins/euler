@@ -11,6 +11,7 @@
  * https://projecteuler.net/problem=5
  */
 
+#[allow(dead_code)]
 pub fn main() {
     assert_eq!(divisible_by_all(1, 10), 2520);
     assert_eq!(divisible_by_all(1, 20), 232792560);

@@ -15,8 +15,11 @@
  * 3025 - 385 = 2640
  *
  * Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.
+ *
+ * https://projecteuler.net/problem=6
  */
 
+#[allow(dead_code)]
 pub fn main() {
     assert_eq!(sum_of_squares_diff_square_of_sum(10), 2640);
     assert_eq!(sum_of_squares_diff_square_of_sum(100), 25164150);
