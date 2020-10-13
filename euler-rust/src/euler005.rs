@@ -12,8 +12,9 @@
  */
 
 pub fn main() {
-    let res = divisible_by_all(1, 20);
-    println!("Result: {}", res);
+    assert_eq!(divisible_by_all(1, 10), 2520);
+    assert_eq!(divisible_by_all(1, 20), 232792560);
+    println!("OK");
 }
 
 pub fn divisible_by_all(min: u64, max: u64) -> u64 {
