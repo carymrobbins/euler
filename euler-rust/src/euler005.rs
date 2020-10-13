@@ -18,12 +18,8 @@ pub fn main() {
 }
 
 pub fn divisible_by_all(min: u64, max: u64) -> u64 {
-    if max < min {
-        panic!("max cannot be less than min: {} < {}", max, min);
-    }
-    if min < 1 {
-        panic!("min cannot be less than 1: {} < 1", min);
-    }
+    assert!(max >= min, "max cannot be less than min: {} < {}", max, min);
+    assert!(min >= 1, "min cannot be less than 1: {} < 1", min);
     if min == 1 && max == 1 {
         return 1;
     }
@@ -31,12 +27,22 @@ pub fn divisible_by_all(min: u64, max: u64) -> u64 {
     let start = if min == 1 { 2 } else { min };
     // Create a closure for building our range.
     let range = || start..=max;
+    // Start by building up our result as a product by iterating backwards
+    // through our range. Start with the max and on each iteration see if our
+    // current result is a multiple of d. If not, we need to create a new
+    // product from it to ensure we have a number that is divisible by all
+    // of the numbers from max to d.
     let mut result: u64 = 1;
     for d in range().rev() {
         if result % d != 0 {
             result *= d;
         }
     }
+    // We now need to go back through our range and see if we can reduce
+    // our result. We'll check for each d in the range and see if we can
+    // divide our result by d and still have a number that is divisible by
+    // all of the entries in our range. Continue dividing result by d while
+    // this is true.
     for d in range() {
         loop {
             let q = result / d;
