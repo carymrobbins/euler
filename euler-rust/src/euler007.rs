@@ -9,15 +9,19 @@
  * https://projecteuler.net/problem=7
  */
 
+use run::run;
+
 #[allow(dead_code)]
 pub fn main() {
-    assert_eq!(prime(1), 2);
-    assert_eq!(prime(2), 3);
-    assert_eq!(prime(3), 5);
-    assert_eq!(prime(4), 7);
-    assert_eq!(prime(5), 11);
-    assert_eq!(prime(6), 13);
-    assert_eq!(prime(10001), 104743);
+    run("007", || {
+        assert_eq!(prime(1), 2);
+        assert_eq!(prime(2), 3);
+        assert_eq!(prime(3), 5);
+        assert_eq!(prime(4), 7);
+        assert_eq!(prime(5), 11);
+        assert_eq!(prime(6), 13);
+        assert_eq!(prime(10001), 104743);
+    });
 }
 
 pub fn prime(n: u16) -> u64 {

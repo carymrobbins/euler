@@ -19,10 +19,14 @@
  * https://projecteuler.net/problem=6
  */
 
+use run::run;
+
 #[allow(dead_code)]
 pub fn main() {
-    assert_eq!(sum_of_squares_diff_square_of_sum(10), 2640);
-    assert_eq!(sum_of_squares_diff_square_of_sum(100), 25164150);
+    run("006", || {
+        assert_eq!(sum_of_squares_diff_square_of_sum(10), 2640);
+        assert_eq!(sum_of_squares_diff_square_of_sum(100), 25164150);
+    });
 }
 
 pub fn sum_of_squares_diff_square_of_sum(max: u64) -> u64 {
