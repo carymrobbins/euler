@@ -7,6 +7,7 @@ use std::string::String;
 use std::vec::Vec;
 
 mod euler001;
+mod euler002;
 mod euler005;
 mod euler006;
 mod euler007;
@@ -16,6 +17,7 @@ mod run;
 fn mk_euler_tasks() -> BTreeMap<u16, fn()> {
     let mut res: BTreeMap<u16, fn()> = BTreeMap::new();
     res.insert(001, euler001::main);
+    res.insert(002, euler002::main);
     res.insert(005, euler005::main);
     res.insert(006, euler006::main);
     res.insert(007, euler007::main);
