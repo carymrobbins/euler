@@ -11,7 +11,6 @@
 
 use run::run;
 
-#[allow(dead_code)]
 pub fn main() {
     run("007", || {
         assert_eq!(prime(1), 2);

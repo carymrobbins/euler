@@ -15,7 +15,6 @@ use primes::primes;
 use run::run;
 use std::collections::HashMap;
 
-#[allow(dead_code)]
 pub fn main() {
     // While the lcm_from_factors approach seems elegant, the divisible_by_all approach
     // seems to be about 10x faster.

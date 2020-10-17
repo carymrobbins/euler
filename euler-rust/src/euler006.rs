@@ -21,7 +21,6 @@
 
 use run::run;
 
-#[allow(dead_code)]
 pub fn main() {
     run("006", || {
         assert_eq!(sum_of_squares_diff_square_of_sum(10), 2640);
