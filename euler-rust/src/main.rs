@@ -9,6 +9,7 @@ use std::vec::Vec;
 mod euler001;
 mod euler002;
 mod euler003;
+mod euler004;
 mod euler005;
 mod euler006;
 mod euler007;
@@ -20,6 +21,7 @@ fn mk_euler_tasks() -> BTreeMap<u16, fn()> {
     res.insert(001, euler001::main);
     res.insert(002, euler002::main);
     res.insert(003, euler003::main);
+    res.insert(004, euler004::main);
     res.insert(005, euler005::main);
     res.insert(006, euler006::main);
     res.insert(007, euler007::main);
