@@ -18,11 +18,11 @@ use std::collections::HashMap;
 pub fn main() {
     // While the lcm_from_factors approach seems elegant, the divisible_by_all approach
     // seems to be about 10x faster.
-    run("005.1 (divisible_by_all)", || {
+    run("005.1: divisible_by_all", || {
         assert_eq!(divisible_by_all(1, 10), 2520);
         assert_eq!(divisible_by_all(1, 20), 232792560);
     });
-    run("005.2 (lcm_from_factors)", || {
+    run("005.2: lcm_from_factors", || {
         assert_eq!(lcm_from_factors(1, 10), 2520);
         assert_eq!(lcm_from_factors(1, 20), 232792560);
     });

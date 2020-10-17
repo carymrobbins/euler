@@ -9,17 +9,23 @@
  * https://projecteuler.net/problem=7
  */
 
+use primes::primes;
 use run::run;
 
 pub fn main() {
-    run("007", || {
+    run("007.0", || {
         assert_eq!(prime(1), 2);
         assert_eq!(prime(2), 3);
         assert_eq!(prime(3), 5);
         assert_eq!(prime(4), 7);
         assert_eq!(prime(5), 11);
         assert_eq!(prime(6), 13);
-        assert_eq!(prime(10001), 104743);
+    });
+    run("007.1: prime", || {
+        assert_eq!(prime(10_001), 104_743);
+    });
+    run("007.2: primes.nth", || {
+        assert_eq!(primes().nth(10_000), Some(104_743));
     });
 }
 
