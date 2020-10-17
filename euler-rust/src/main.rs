@@ -1,3 +1,5 @@
+extern crate lazy_static;
+
 use std::collections::BTreeMap;
 use std::env;
 use std::process;
@@ -7,6 +9,7 @@ use std::vec::Vec;
 mod euler005;
 mod euler006;
 mod euler007;
+mod primes;
 mod run;
 
 fn mk_euler_tasks() -> BTreeMap<u16, fn()> {

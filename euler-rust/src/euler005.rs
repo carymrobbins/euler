@@ -11,13 +11,21 @@
  * https://projecteuler.net/problem=5
  */
 
+use primes::primes;
 use run::run;
+use std::collections::HashMap;
 
 #[allow(dead_code)]
 pub fn main() {
-    run("005", || {
+    // While the lcm_from_factors approach seems elegant, the divisible_by_all approach
+    // seems to be about 10x faster.
+    run("005.1 (divisible_by_all)", || {
         assert_eq!(divisible_by_all(1, 10), 2520);
         assert_eq!(divisible_by_all(1, 20), 232792560);
+    });
+    run("005.2 (lcm_from_factors)", || {
+        assert_eq!(lcm_from_factors(1, 10), 2520);
+        assert_eq!(lcm_from_factors(1, 20), 232792560);
     });
 }
 
@@ -58,4 +66,62 @@ pub fn divisible_by_all(min: u64, max: u64) -> u64 {
         }
     }
     result
+}
+
+//////////////////////////////////////////
+
+fn lcm_from_factors(min: u64, max: u64) -> u64 {
+    eval_factors(
+        concat_factors(
+            (min..=max).map(factors).collect()
+        )
+    )
+}
+
+type FactorMap = HashMap<u64, u32>;
+
+fn factors(x: u64) -> FactorMap {
+    let mut res: FactorMap = HashMap::new();
+    if x == 0 {
+        res.insert(0, 1);
+        return res;
+    }
+    if x == 1 {
+        res.insert(1, 1);
+        return res;
+    }
+    let mut n = x;
+    for p in primes() {
+        if p > n {
+            break;
+        }
+        loop {
+            let r = n % p;
+            if r != 0 {
+                break;
+            }
+            let v =res.get(&p).unwrap_or(&0) + 1;
+            res.insert(p, v);
+            n /= p;
+        }
+    }
+    res
+}
+
+fn concat_factors(fss: Vec<FactorMap>) -> FactorMap {
+    let mut res: FactorMap = HashMap::new();
+    for fs in fss {
+        for (k, v) in fs {
+            res.insert(k, v.max(*res.get(&k).unwrap_or(&0)));
+        }
+    }
+    res
+}
+
+fn eval_factors(fs: FactorMap) -> u64 {
+    let mut res: u64 = 1;
+    for (k, v) in fs {
+        res *= k.pow(v);
+    }
+    res
 }
